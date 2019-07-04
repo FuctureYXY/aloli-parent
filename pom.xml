@@ -14,7 +14,7 @@
   <packaging>pom</packaging>
   <name>aloli-parent</name>
   
-  	<!-- 鍏辨湁渚濊禆 -->
+  	<!-- 默认拥有依赖 -->
 	    <dependencies>
 	   <!--  Starter for building web, including RESTful, 
 	    applications using Spring MVC. Uses Tomcat as the default embedded container -->
@@ -27,12 +27,12 @@
 				<artifactId>spring-boot-starter-test</artifactId>
 				<scope>test</scope>
 			</dependency>
-		<!-- 	濡傛灉瑕佹暣鍚圝sp寮€鍙?灏变笉鑳界敤鑷甫鐨?  灏遍渶瑕佸崟鐙厤缃竴涓缃殑tomcat 鎵€浠ュ氨闇€瑕佹墦war鍖?   -->
+		<!-- 	如果要整合Jsp开发 就不能用自带的   就需要单独配置一个外置的tomcat 所以就需要打war包   -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-tomcat</artifactId><!-- tomcat -->
 				<scope>provided</scope> 
-				<!-- 浠ュ悗鎶婇」鐩墦鍖呮椂 涓嶉渶瑕佹墦鍖呭唴缃畉omcat   浠ュ墠闇€瑕佹墦鍖呭唴缃畉omcat  鐜板湪鐢ㄤ簡杩欎釜涓嶇敤 鐢ㄥ缃殑 -->
+				<!-- 变成provided 意思是 以后把项目打包时 不需要打包内置tomcat   以前需要打包内置tomcat  现在用了这个不用 用外置的 -->
 			</dependency>
 		<!-- thymeleaf -->
 			<dependency>
@@ -44,7 +44,7 @@
 				<artifactId>thymeleaf-extras-java8time</artifactId>
 			</dependency>
 		</dependencies>
-	<!-- 渚濊禆缁ф壙-->
+	<!-- 手动继承依赖-->
 	<dependencyManagement>
 		<dependencies>
 			<!-- mybatis -->
