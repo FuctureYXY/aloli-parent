@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Insert title here</title>
+<head th:include="index :: myfooter" >
+
+
+</head>
+<body>
+ddddddd
+<div id = "app">
+<!-- <p id ="content"><p> -->    
+<p>{{ msg }}</p>  <!-- 这层 是给用户看的  就是 v  Vue实例所控制的这个元素区域，就是我们的V-->
+
+ </div>
+<script type="text/javascript">
+var vm = new Vue({
+	el:'#app' , //el表示 当前我们new 的这个Vue实例 要控制页面上的哪个区域
+	data:{//data属性中存放的是el中要用到的数据          data 就可以看作 Model m  专门用来保存每个页面的数据的
+		msg:'欢迎学习vue'
+	
+	}
+})
+</script>
+</body>
+</html>
