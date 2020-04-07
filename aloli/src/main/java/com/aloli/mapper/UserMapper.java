@@ -1,13 +1,16 @@
 package com.aloli.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.aloli.entity.Student;
+import com.aloli.entity.User;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 
-public interface StudentMapper {
-	public List<Student> listStudent();
+
+public interface UserMapper extends BaseMapper<User>{
+
 }
