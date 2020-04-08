@@ -30,6 +30,11 @@
 				<artifactId>aloli-api</artifactId>
 				<version> ${project.parent.version} </version>
 			</dependency>
+			<dependency>
+				<groupId> ${project.parent.groupId}</groupId>
+				<artifactId>aloli-common</artifactId>
+				<version> ${project.parent.version} </version>
+			</dependency>
 			<!-- mybatis -->
 		 <!-- 	<dependency>
 		        <groupId>org.mybatis.spring.boot</groupId>

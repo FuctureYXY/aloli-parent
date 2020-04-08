@@ -26,6 +26,7 @@ import com.aloli.annotation.UserLoginToken;
 import com.aloli.entity.User;
 import com.aloli.mapper.UserMapper;
 import com.aloli.service.UserService;
+import com.aloli.util.R;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 @Controller
@@ -50,6 +51,7 @@ public class LoginController {
                 String token = userService.getToken(userForBase);
                 jsonObject.put("token", token);
                 jsonObject.put("user", userForBase);
+               
                 return jsonObject;
             }
         }
