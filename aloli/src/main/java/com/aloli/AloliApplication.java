@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
-@MapperScan("com.aloli")//扫描 mapper
+@MapperScan("com.aloli.mapper")//扫描 mapper
 @EnableCaching()//spring framework中的注解驱动的缓存管理功能
 public class AloliApplication {
 
