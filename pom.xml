@@ -38,6 +38,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.41</version>
+		</dependency>
 
 
 	</dependencies>
@@ -61,5 +66,10 @@
 
 		</dependencies>
 	</dependencyManagement>
- 
+
+	<modules>
+	<module>aloli-api</module>
+	<module>aloli</module>
+	</modules>
+
 	</project>
