@@ -1,0 +1,21 @@
+.sakura-div {
+	position:absolute;
+	height:300px;
+	width:500px;  
+	left:35%;
+	top:25%;
+}
+#hello-sakura {
+	font-size: 40px;
+	color:#FFCABF;
+	margin-left:30%;
+}
+.input-text {
+	opacity:.4;
+	width:400px;
+}
+.input-label {
+	color:#FFCABF;
+	font-size:25px;
+	top:-7px;
+}

@@ -45,13 +45,14 @@ public static  AloliEmail  sender() {
 	mail.setPassword("anfkhutlwsfbbhaj");
 	return mail;
 }
-public  static void send(AloliEmail aloliEmail, String recipients) {
-	Logger logger = Logger.getLogger(SendMail.class);
+public  static void send(AloliEmail aloliEmail, String recipients,String numSmall) {
+		
+	Logger logger = Logger.getLogger(AloliEmail.class);
 	logger.info("开始发送邮件！");
-	
-	sendMails( aloliEmail.getSender(), aloliEmail.getUsername(), aloliEmail.getPassword(), recipients);
+	sendMails( aloliEmail.getSender(), aloliEmail.getUsername(), aloliEmail.getPassword(), recipients,numSmall);
+
 }
-private static  void sendMails(String sender,String username,String password,String recipients) {
+private static  void sendMails(String sender,String username,String password,String recipients,String numSmall) {
 	try {
 //创建邮件对象 
 		Session session = null;
@@ -76,9 +77,9 @@ private static  void sendMails(String sender,String username,String password,Str
 		// 设置标题
 		message.setSubject("aloli验证中心");
 		// 邮件内容，根据自己需要自行制作模板
-		message.setContent("<p>尊敬的"+recipients+"用户：</p><p>您好!</p><p>您正在尝试重置密码！" + "您的验证码是：123456。</p><p>请妥善保管您的账号和密码。</p>"
-				+ "<p>******</p>", "text/html;charset=utf-8");
-//发送邮件 
+		message.setContent("<p>尊敬的"+recipients+"用户：</p><p>您好!</p><p>欢迎加入aloli群体！" + "您的验证码是："+numSmall+"。"
+				, "text/html;charset=utf-8");
+		//发送邮件 
 		Transport transport = session.getTransport("smtp");
 		transport.connect("smtp.qq.com", username, password);// 以smtp方式登录邮箱
 		// 发送邮件,其中第二个参数是所有已设好的收件人地址
