@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -43,7 +44,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
         return allNeedVerify(token);
     }
-    //策略  检查有没有需要用户权限的注解   有则验证 没有就不验证 
+    //策略  检查有没有需要用户权限的注解   有则验证 没有就不验证
     private  Boolean userLoginToken( Method method,String token) {
     	if (method.isAnnotationPresent(UserLoginToken.class)) {
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
@@ -55,6 +56,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 // 获取 token 中的 user id
                 String userId;
                 try {
+
                     userId = JWT.decode(token).getAudience().get(0);
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
@@ -82,8 +84,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             throw new RuntimeException("无token，请重新登录");
         }
         // 获取 token 中的 user id
-        String userId;
+        String userId=null;
         try {
+
             userId = JWT.decode(token).getAudience().get(0);
         } catch (JWTDecodeException j) {
             throw new RuntimeException("401");
@@ -103,15 +106,15 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, 
-                                  HttpServletResponse httpServletResponse, 
+    public void postHandle(HttpServletRequest httpServletRequest,
+                                  HttpServletResponse httpServletResponse,
                             Object o, ModelAndView modelAndView) throws Exception {
     }
-    
-    
+
+
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, 
-                                          HttpServletResponse httpServletResponse, 
+    public void afterCompletion(HttpServletRequest httpServletRequest,
+                                          HttpServletResponse httpServletResponse,
                                           Object o, Exception e) throws Exception {
     }
 }

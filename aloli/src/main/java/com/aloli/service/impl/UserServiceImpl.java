@@ -16,7 +16,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	public String getToken(User user) {
 		String token="";
 		token= JWT.create().withAudience(user.getId())
+				//sign 加密 采用用户的密码来进行加密
                 .sign(Algorithm.HMAC256(user.getPassword()));
+
         return token;
 	}
 
