@@ -24,11 +24,15 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     UserService userService;
+
+    /**
+     */
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
         String requestUrl = ((HttpServletRequest) httpServletRequest).getRequestURI().toString();
+        // 从 http 请求头中取出 token
+        String token = httpServletRequest.getHeader("token");
 
-        String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
         // 如果不是映射到方法直接通过
         if(!(object instanceof HandlerMethod)){
             return true;
@@ -42,7 +46,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        return allNeedVerify(token);
+        return true ;  // 先关闭认证
+        //return allNeedVerify(token);
     }
     //策略  检查有没有需要用户权限的注解   有则验证 没有就不验证
     private  Boolean userLoginToken( Method method,String token) {
