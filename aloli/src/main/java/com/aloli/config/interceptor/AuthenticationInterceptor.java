@@ -1,4 +1,4 @@
-package com.aloli.interceptor;
+package com.aloli.config.interceptor;
 
 import java.lang.reflect.Method;
 

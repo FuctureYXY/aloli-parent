@@ -1,11 +1,4 @@
-package com.aloli.config;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.aloli.interceptor.AuthenticationInterceptor;
+package com.aloli.config.interceptor;
 
 /**
  * 定义一个配置类
