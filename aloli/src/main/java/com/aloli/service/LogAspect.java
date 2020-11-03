@@ -79,4 +79,13 @@ public class LogAspect {
         joinPoint.proceed();
         System.out.println("环绕通知结束,"+method.getName());
     }
+
+    @AfterThrowing("execution(* com.aloli.service.DemoMethodService.*(..))")
+    public void Afterthrowing(JoinPoint joinPoint) throws Throwable{
+
+        System.out.println("异常通知开始,");
+
+        System.out.println("异常通知结束,");
+    }
 }
+

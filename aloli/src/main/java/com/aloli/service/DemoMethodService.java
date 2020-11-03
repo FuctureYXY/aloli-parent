@@ -7,6 +7,7 @@ public class DemoMethodService {
 
     public void add(String name ){
         System.out.println(name);
+        throw  new RuntimeException("dd");
     }
 
 }
