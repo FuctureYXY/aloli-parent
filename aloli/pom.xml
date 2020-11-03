@@ -89,7 +89,7 @@
 			<version>3.5.0</version>
 		</dependency>
 
-		<!-- aop  -->
+		<!-- aop    此依赖已包含AspectJ 相关的Jar包-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>

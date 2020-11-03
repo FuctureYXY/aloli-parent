@@ -5,14 +5,13 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.aloli.annotation.PassToken;
-import com.aloli.annotation.UserLoginToken;
+import com.aloli.annotation.login.PassToken;
+import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.entity.User;
 import com.aloli.service.UserService;
 import com.auth0.jwt.JWT;
@@ -46,8 +45,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        return true ;  // 先关闭认证
-        //return allNeedVerify(token);
+
+        return allNeedVerify(token);
     }
     //策略  检查有没有需要用户权限的注解   有则验证 没有就不验证
     private  Boolean userLoginToken( Method method,String token) {

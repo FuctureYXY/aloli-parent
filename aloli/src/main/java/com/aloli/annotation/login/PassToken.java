@@ -1,8 +1,9 @@
-package com.aloli.annotation;
-//需要登录才能进行操作的注解UserLoginToken
+package com.aloli.annotation.login;
+
 import java.lang.annotation.*;
+//用来跳过验证的PassToken
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UserLoginToken {
+public @interface PassToken {
     boolean required() default true;
 }

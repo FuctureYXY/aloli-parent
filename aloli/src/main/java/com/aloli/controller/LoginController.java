@@ -1,20 +1,13 @@
 package com.aloli.controller;
 
-import java.util.List;
-
 
 import com.alibaba.fastjson.JSONObject;
-import com.aloli.annotation.UserLoginToken;
+import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.entity.User;
 import com.aloli.service.UserService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import com.aloli.entity.Student;
-import com.aloli.mapper.StudentMapper;
 
 @RestController
 @RequestMapping("/login")
