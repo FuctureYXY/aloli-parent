@@ -39,10 +39,13 @@ import java.lang.reflect.Method;
 @Component
 public class LogAspect {
     //切点
-    @Pointcut("@annotation(com.aloli.annotation.aop.Action)")
-    public void annotationPoinCut(){}
+    //@Pointcut("@annotation(com.aloli.annotation.aop.Action)")
+    //public void annotationPoinCut(){}
 
     //@After("annotationPoinCut()")
+
+
+
     @After("@annotation(com.aloli.annotation.aop.Action)")
     public void after(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
