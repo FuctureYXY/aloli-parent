@@ -2,10 +2,8 @@ package com.aloli.service;
 
 import com.aloli.annotation.aop.Action;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -53,11 +51,32 @@ public class LogAspect {
         Action action = method.getAnnotation(Action.class);
         System.out.println("注解式拦截 "+action.name());
     }
-
     @Before("execution(* com.aloli.service.DemoMethodService.*(..))")
     public void before(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        System.out.println("方法规则式拦截,"+method.getName());
+        System.out.println("前置通知,"+method.getName());
+    }
+    @After("execution(* com.aloli.service.DemoMethodService.*(..))")
+    public void After2(JoinPoint joinPoint){
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        System.out.println("后置通知,"+method.getName());
+    }
+
+    @AfterReturning("execution(* com.aloli.service.DemoMethodService.*(..))")
+    public void AfterReturning(JoinPoint joinPoint){
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        System.out.println("后置通知returning,"+method.getName());
+    }
+    //可以知道 环绕通知是  在  前置通知前     方法执行完后   调用after 等后面的操作之前执行
+    @Around("execution(* com.aloli.service.DemoMethodService.*(..))")
+    public void Around(ProceedingJoinPoint joinPoint) throws Throwable{
+        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+        Method method = signature.getMethod();
+        System.out.println("环绕通知开始,"+method.getName());
+        joinPoint.proceed();
+        System.out.println("环绕通知结束,"+method.getName());
     }
 }
