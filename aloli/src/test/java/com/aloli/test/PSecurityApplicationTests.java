@@ -22,8 +22,8 @@ public class PSecurityApplicationTests {
 
     @Test
     public void test() {
-        //demoAnnotationService.add();
-        demoMethodService.add("aa");
+        demoAnnotationService.add();
+       // demoMethodService.add("aa");
     }
 
 
