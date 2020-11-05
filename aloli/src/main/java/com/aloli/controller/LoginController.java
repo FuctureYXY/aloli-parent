@@ -8,6 +8,10 @@ import com.aloli.service.UserService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.expression.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/login")
@@ -40,6 +44,11 @@ public class LoginController {
 	public String getMessage(){
 
 		return aa();
+	}
+	@GetMapping("/getList")
+	public List getList(){
+
+		return new ArrayList();
 	}
 	@UserLoginToken
 	private String  aa(){
