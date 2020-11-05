@@ -50,6 +50,13 @@ public class LoginController {
 
 		return new ArrayList();
 	}
+
+	@GetMapping("/getException")
+	public List getException(){
+			Integer x = 1/0;
+		return new ArrayList();
+	}
+
 	@UserLoginToken
 	private String  aa(){
 
