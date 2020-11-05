@@ -14,7 +14,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 
 
-//配置 只对这个包下面的controller生效
+//全局返回处理器
+
+//配置 只对这些路径下的返回生效
 @RestControllerAdvice(basePackages = {"com.aloli.controller","com.aloli.config.base"})
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 

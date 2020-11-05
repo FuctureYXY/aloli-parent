@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+//全局异常处理器
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
