@@ -23,12 +23,7 @@ public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
     //是否支持advice的功能   true  支持  false 不支持
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-
-
-
-
         return true;
-
     }
 
     @Override
