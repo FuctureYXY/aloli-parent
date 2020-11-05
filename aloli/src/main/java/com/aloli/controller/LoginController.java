@@ -3,8 +3,10 @@ package com.aloli.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aloli.annotation.login.UserLoginToken;
+import com.aloli.config.base.BussinessException;
 import com.aloli.entity.User;
 import com.aloli.service.UserService;
+import com.aloli.util.ResultCode;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -56,7 +58,11 @@ public class LoginController {
 			Integer x = 1/0;
 		return new ArrayList();
 	}
+	@GetMapping("/getRunTimeException")
+	public List getRunTimeException(){
+		throw  new BussinessException(ResultCode.SUCCESS);
 
+	}
 	@UserLoginToken
 	private String  aa(){
 

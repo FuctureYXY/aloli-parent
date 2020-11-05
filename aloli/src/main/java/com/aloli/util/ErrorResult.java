@@ -1,10 +1,11 @@
 package com.aloli.util;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -27,7 +28,7 @@ public class ErrorResult<T> {
     private String errors;
 
     /**
-     * 成功  创建ResResult  没data数据
+     *  失败返回值
      * @return
      */
     public  static ErrorResult fail(ResultCode resultCode, Throwable e ,String message){
@@ -36,6 +37,12 @@ public class ErrorResult<T> {
         return errorResult;
     }
 
+    /**
+     * 失败放回值
+     * @param resultCode
+     * @param e
+     * @return
+     */
     public  static ErrorResult fail(ResultCode resultCode , Throwable e){
 
         ErrorResult errorResult = new ErrorResult();
