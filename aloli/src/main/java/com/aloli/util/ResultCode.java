@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.security.auth.login.FailedLoginException;
 
-
+/**
+ * 基础返回枚举类
+ */
 public enum ResultCode {
 
 
