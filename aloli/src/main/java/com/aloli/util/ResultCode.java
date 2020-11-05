@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.security.auth.login.FailedLoginException;
 
 
 public enum ResultCode {
 
 
-  SUCCESS(1,"成功");
+  SUCCESS(1,"成功"),
+  FAIL(0,"失败");
   private Integer code;
   private String message;
   ResultCode(Integer code, String message){

@@ -60,7 +60,7 @@ public class LoginController {
 	}
 	@GetMapping("/getRunTimeException")
 	public List getRunTimeException(){
-		throw  new BussinessException(ResultCode.SUCCESS);
+		throw  new BussinessException(ResultCode.FAIL);
 
 	}
 	@UserLoginToken
