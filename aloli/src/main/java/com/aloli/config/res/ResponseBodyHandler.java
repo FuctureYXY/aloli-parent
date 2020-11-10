@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 //全局返回处理器
 
-//配置 只对这些路径下的返回生效
+//配置 只对这些路径下的返回生效  res 是为了扫描到异常
 @RestControllerAdvice(basePackages = {"com.aloli.controller","com.aloli.config.res"})
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
