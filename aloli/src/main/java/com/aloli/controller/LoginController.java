@@ -1,6 +1,7 @@
 package com.aloli.controller;
 
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.alibaba.fastjson.JSONObject;
 import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.config.res.BussinessException;
@@ -9,10 +10,20 @@ import com.aloli.entity.vo.UserVo;
 import com.aloli.service.UserService;
 import com.aloli.util.ResultCode;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import javafx.application.Application;
+import org.hibernate.validator.internal.util.stereotypes.ThreadSafe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.SocketUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
@@ -82,8 +93,24 @@ public class LoginController {
 	}
 
 	@GetMapping("/getassException")
+	@Transactional
 	public String  getassException( UserVo user){
-		Assert.notNull(user.getBaa());
+		User user1 = new User();
+		user1.setId("111");
+		user1.setUsername("aaxxsw");
+		user1.setPassword("bb");
+		//userService.save(user1);
+		WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+		bb();
+
 		return "aa";
+	}
+
+	@Async("syncPoolTaskExecutor")
+	public  void  bb(){
+
+		System.out.println("用来验证事务");
+
+		//throw new RuntimeException("bb");
 	}
 }

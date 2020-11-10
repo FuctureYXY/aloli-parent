@@ -16,6 +16,5 @@ public class UserVo{
 
 	private String username;
 	private String password;
-	@NotEmpty(message = "aaaaadd")
-	private Boolean baa;
+
 }

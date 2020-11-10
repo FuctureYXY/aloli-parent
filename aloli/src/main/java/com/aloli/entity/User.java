@@ -19,5 +19,4 @@ public class User extends Model<User>{
 
 	private String username;
 	private String password;
-	private Boolean baa;
 }
