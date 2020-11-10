@@ -96,21 +96,16 @@ public class LoginController {
 	@Transactional
 	public String  getassException( UserVo user){
 		User user1 = new User();
-		user1.setId("111");
+		user1.setId("1122");
 		user1.setUsername("aaxxsw");
 		user1.setPassword("bb");
-		//userService.save(user1);
-		WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-		bb();
 
+		//WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+		final String s = userService.useSync();
+		System.out.println("cc");
+		//userService.save(user1);
 		return "aa";
 	}
 
-	@Async("syncPoolTaskExecutor")
-	public  void  bb(){
 
-		System.out.println("用来验证事务");
-
-		//throw new RuntimeException("bb");
-	}
 }

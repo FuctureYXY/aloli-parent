@@ -11,6 +11,15 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @Configuration
 @EnableAsync  // 开启异步任务支持
 public class SyncConfiguration {
+    /**
+     * 自定义线程池
+     * 使用方式  方法上面加 @Async("syncPoolTaskExecutor")
+     * 注意  异步方法和调用方法一定要     写在不同的类中    如果写在一个类中, 是没有效果的
+     *  不同的线程 事务是不生效的    因此 使用另一条线程去执行   如果报错 对当前线程是没影响的 当前线程默认他成功
+     *  并且 这个线程是没办法放回数据给  当前线程的
+     *
+     * @return
+     */
     @Bean(name="syncPoolTaskExecutor")
     public ThreadPoolTaskExecutor syncPool() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();

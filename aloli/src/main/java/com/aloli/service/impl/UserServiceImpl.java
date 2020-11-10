@@ -1,5 +1,6 @@
 package com.aloli.service.impl;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.aloli.entity.User;
@@ -21,6 +22,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
         return token;
 	}
+	@Async("syncPoolTaskExecutor")
+	@Override
+	public  String   useSync(){
 
+		System.out.println("用来验证事务");
+
+		return "aa";
+	}
 
 }
