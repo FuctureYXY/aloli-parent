@@ -5,12 +5,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.config.res.BussinessException;
 import com.aloli.entity.User;
+import com.aloli.entity.vo.UserVo;
 import com.aloli.service.UserService;
 import com.aloli.util.ResultCode;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.Assert;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +47,9 @@ public class LoginController {
 	}
 
 	@GetMapping("/getMessage")
-	public String getMessage(){
+	public void getMessage(){
 
-		return aa();
+
 	}
 	@GetMapping("/getList")
 	public List getList(){
@@ -59,12 +64,26 @@ public class LoginController {
 	}
 	@GetMapping("/getRunTimeException")
 	public List getRunTimeException(){
+
 		throw  new BussinessException(ResultCode.FAIL);
 
 	}
 	@UserLoginToken
 	private String  aa(){
 
+		return "aa";
+	}
+
+
+	@GetMapping("/getvadiException")
+	public String  getvadiException(@Validated UserVo user){
+
+	return "aa";
+	}
+
+	@GetMapping("/getassException")
+	public String  getassException( UserVo user){
+		Assert.notNull(user.getBaa());
 		return "aa";
 	}
 }

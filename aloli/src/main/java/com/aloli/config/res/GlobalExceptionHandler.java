@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.UnexpectedTypeException;
+import javax.validation.ValidationException;
 import java.util.List;
 
 //全局异常处理器
@@ -26,10 +28,10 @@ public class GlobalExceptionHandler {
     //这里指的是处理Throwable异常
     @ExceptionHandler(BussinessException.class)
     public ErrorResult handleBussinessException(BussinessException e , HttpServletRequest  request){
-    ErrorResult errorResult = ErrorResult.builder()
+        e.printStackTrace();
+        ErrorResult errorResult = ErrorResult.builder()
             .status(e.code)
             .message(e.message)
-            .errors("程序控制异常")
             .exception(e.getClass().getName())
             .build();
     return errorResult;
@@ -39,10 +41,10 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Throwable.class)
     public ErrorResult handleThrowable(Throwable e , HttpServletRequest  request){
+        e.printStackTrace();
         ErrorResult errorResult = ErrorResult.builder()
                 .status(500)
                 .message(e.getMessage())
-                .errors("非程序控制异常")
                 .exception(e.getClass().getName())
                 .build();
         return errorResult;
@@ -55,25 +57,15 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorResult handleMethodArgumentNotValidException(MethodArgumentNotValidException e ,HttpServletRequest  request){
-        String msgs = this.handle(e.getBindingResult().getFieldErrors());
-        ErrorResult error  =  ErrorResult.fail(ResultCode.FAIL,e,msgs);
+    @ExceptionHandler(ValidationException.class)
+    public ErrorResult handleMethodArgumentNotValidException(ValidationException e ,HttpServletRequest  request){
+        ErrorResult error  =  ErrorResult.fail(ResultCode.FAIL,e,e.getMessage());
+        error.setErrors("请求参数校验出错,请检查传参");
         return error;
     }
 
 
 
-    private String handle(List<FieldError> fieldErrors){
-        StringBuilder sb = new StringBuilder();
-        for(FieldError obj:fieldErrors){
-            sb.append(obj.getField());
-            sb.append("=[");
-            sb.append(obj.getDefaultMessage());
-            sb.append("] ");
-        }
-        return sb.toString();
-    }
 
 
     /**
@@ -84,6 +76,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResult illegalArgumentException(IllegalArgumentException e ,HttpServletRequest request){
+        e.printStackTrace();
         ErrorResult error  = ErrorResult.builder()
                 .status(4000)
                 .message(e.getMessage())
@@ -95,5 +88,5 @@ public class GlobalExceptionHandler {
 
 
 
-
 }
+

@@ -1,4 +1,4 @@
-package com.aloli.entity;
+package com.aloli.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -6,18 +6,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
-@TableName("user")
-public class User extends Model<User>{
+public class UserVo{
 	private String id;
 
 	private String username;
 	private String password;
+	@NotEmpty(message = "aaaaadd")
 	private Boolean baa;
 }
