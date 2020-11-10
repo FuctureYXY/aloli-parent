@@ -1,4 +1,4 @@
-package com.aloli.config.base;
+package com.aloli.config.res;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aloli.util.R;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 //全局返回处理器
 
 //配置 只对这些路径下的返回生效
-@RestControllerAdvice(basePackages = {"com.aloli.controller","com.aloli.config.base"})
+@RestControllerAdvice(basePackages = {"com.aloli.controller","com.aloli.config.res"})
 public class ResponseBodyHandler implements ResponseBodyAdvice<Object> {
 
     //是否支持advice的功能   true  支持  false 不支持
