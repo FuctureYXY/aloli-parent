@@ -9,5 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface UserService extends IService<User> {
 	  String getToken(User user) ;
-	String   useSync();
+	  String   useSync();
+	  void   testshiwu(User user);
+	String   bbx();
 }

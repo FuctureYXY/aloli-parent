@@ -1,5 +1,7 @@
 package com.aloli.service.impl;
 
+import com.aloli.service.DemoMethodService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,8 @@ import com.aloli.service.UserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
@@ -19,16 +23,38 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 		token= JWT.create().withAudience(user.getId())
 				//sign 加密 采用用户的密码来进行加密
                 .sign(Algorithm.HMAC256(user.getPassword()));
-
         return token;
 	}
-	@Async("syncPoolTaskExecutor")
+
 	@Override
-	public  String   useSync(){
-
-		System.out.println("用来验证事务");
-
+	public  String   bbx(){
+		useSync();
 		return "aa";
 	}
 
+	@Async("syncPoolTaskExecutor")
+	@Override
+	public  String   useSync(){
+		System.out.println("用来验证事务");
+		return "aa";
+	}
+
+	@Override
+	@Transactional
+	public  void   testshiwu(User user ){
+		User user2 = new User();
+		user2.setId("cc");
+		user2.setUsername("cc");
+	this.save(user2);
+		testshiwu2(user);
+	throw new RuntimeException("b");
+	}
+	@Transactional
+	public  void   testshiwu2(User user ){
+		User user2 = new User();
+		user2.setId("cc3");
+		user2.setUsername("cc3");
+		this.save(user2);
+		throw new RuntimeException("b");
+	}
 }

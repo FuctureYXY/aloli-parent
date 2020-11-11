@@ -91,20 +91,26 @@ public class LoginController {
 
 	return "aa";
 	}
-
+	@GetMapping("/getsyncException")
+	public String  getsyncException(){
+		System.out.println("b");
+		userService.bbx();
+		System.out.println("b");
+		return "aa";
+	}
+	public void bb(){
+		userService.useSync();
+	}
 	@GetMapping("/getassException")
-	@Transactional
-	public String  getassException( UserVo user){
+	public void  getassException( UserVo user){
 		User user1 = new User();
-		user1.setId("1122");
-		user1.setUsername("aaxxsw");
-		user1.setPassword("bb");
+		user1.setId("dd222");
 
 		//WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
-		final String s = userService.useSync();
-		System.out.println("cc");
-		//userService.save(user1);
-		return "aa";
+		userService.useSync();
+		//System.out.println("cc");
+
+		//return "aa";
 	}
 
 
