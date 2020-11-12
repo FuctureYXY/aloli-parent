@@ -20,7 +20,7 @@ public class SyncConfiguration {
      * 而对于事务
      *  controller 调用   没加service  然后  service 加了事务  只处理 service 事务
      *  service.a() 调用 service.b()     只有 a()加了事务才生效   就算b加了事务也不生效
-     *
+     *  service.a(){service.b}  b加了事务 a没加 这样也是没有生效的
      *   因此 完美的使用方法是  调用到了改service 加上注解即可
      *
      * @return

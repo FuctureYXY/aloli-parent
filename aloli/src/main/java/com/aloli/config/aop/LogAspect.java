@@ -34,7 +34,7 @@ import java.lang.reflect.Method;
 
 
 @Aspect
-@Component
+//@Component
 public class LogAspect {
     //切点
     //@Pointcut("@annotation(com.aloli.annotation.aop.Action)")

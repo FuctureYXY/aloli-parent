@@ -1,6 +1,7 @@
 package com.aloli.service.impl;
 
 import com.aloli.service.DemoMethodService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
-
+	private DemoMethodService demoMethodService;
 	//token的生成方法
 	@Override
 	public String getToken(User user) {
@@ -28,7 +30,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 	@Override
 	public  String   bbx(){
-		useSync();
+		demoMethodService.addd("33");
+		//useSync();
 		return "aa";
 	}
 
