@@ -2,7 +2,7 @@ package com.aloli.config.res;
 
 import com.alibaba.fastjson.JSONObject;
 import com.aloli.util.R;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;

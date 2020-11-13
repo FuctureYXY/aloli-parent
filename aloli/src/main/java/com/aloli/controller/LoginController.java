@@ -7,6 +7,7 @@ import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.config.res.BussinessException;
 import com.aloli.entity.User;
 import com.aloli.entity.vo.UserVo;
+import com.aloli.service.DemoMethodService;
 import com.aloli.service.UserService;
 import com.aloli.util.ResultCode;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -35,7 +36,8 @@ import java.util.List;
 public class LoginController {
 	@Autowired
 	UserService userService;
-
+	@Autowired
+	DemoMethodService demoMethodService;
 	//登录
 	@PostMapping
 	public Object login(@RequestBody User user){
@@ -46,7 +48,7 @@ public class LoginController {
 			return jsonObject;
 		}else {
 			if (!userForBase.getPassword().equals(user.getPassword())){
-				jsonObject.put("message","登录失败,密码g'r错误");
+				jsonObject.put("message","登录失败,密码错误");
 				return jsonObject;
 			}else {
 				String token = userService.getToken(userForBase);
@@ -59,6 +61,8 @@ public class LoginController {
 
 	@GetMapping("/getMessage")
 	public void getMessage(){
+
+		demoMethodService.addd("aa");
 
 
 	}

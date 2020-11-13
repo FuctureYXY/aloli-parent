@@ -1,10 +1,6 @@
 package com.aloli.util;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.security.auth.login.FailedLoginException;
 
 /**
  * 基础返回枚举类

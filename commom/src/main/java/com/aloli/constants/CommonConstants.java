@@ -1,11 +1,3 @@
-/*
- * CommonConstants.java
- *
- * Copyright 2013 厦门铸远集团有限公司 版权所有<br>
- *
- * <p>Description:</p>
- * <p>Created on Apr 28, 2019 2:47:46 PM</p>
- */
 
 package com.aloli.constants;
 
@@ -39,7 +31,7 @@ public interface CommonConstants {
     String FAIL_MSG = "系统开小差,请稍候在试!";
 
 
-  
+
 
 
 }

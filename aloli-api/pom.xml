@@ -6,12 +6,11 @@
 		<groupId>aloli</groupId>
  		<artifactId>aloli-parent</artifactId>
  		<version>0.0.1-SNAPSHOT</version>
- 		
 	</parent>
-	  <groupId>aloli</groupId>
+	  <groupId>${project.parent.groupId}</groupId>
 	  <artifactId>aloli-api</artifactId>
-	  <version>0.0.1-SNAPSHOT</version>
+	  <version>${project.parent.version}</version>
 	  <name>aloli-api</name>
-	  
- 
+
+
 </project>

@@ -7,18 +7,41 @@
         <artifactId>aloli-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.aloli</groupId>
+    <groupId>${project.parent.groupId}</groupId>
     <artifactId>commom</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${project.parent.version}</version>
     <name>commom</name>
     <description>aloli commom</description>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <!-- 登录用到的jwt  -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.5.0</version>
+        </dependency>
 
+        <!-- aop    此依赖已包含AspectJ 相关的Jar包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- 邮箱接口  废弃  用hutool不香嘛-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>2.0.0.RELEASE</version>
+        </dependency>
     </dependencies>
 
 

@@ -1,3 +1,4 @@
+/*
 package com.aloli.config.interceptor;
 
 import java.lang.reflect.Method;
@@ -24,8 +25,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Autowired
     UserService userService;
 
-    /**
-     */
+    */
+/**
+     *//*
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
         String requestUrl = ((HttpServletRequest) httpServletRequest).getRequestURI().toString();
@@ -122,3 +125,4 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                                           Object o, Exception e) throws Exception {
     }
 }
+*/

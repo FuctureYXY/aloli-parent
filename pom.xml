@@ -89,8 +89,9 @@
 
 	<modules>
 	<module>aloli-api</module>
-	<module>aloli</module>
 	<module>commom</module>
+	<module>aloli</module>
+
 	</modules>
 
 	</project>
