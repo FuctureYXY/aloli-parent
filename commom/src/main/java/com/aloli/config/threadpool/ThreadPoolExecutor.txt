@@ -1,0 +1,169 @@
+
+https://blog.csdn.net/f641385712/article/details/80832636
+
+继承关系
+Executor->ExecutorService->AbstractExecutorService->ThreadPoolExecutor
+ThreadPoolExecutor 和  ThreadPoolTaskExecutor
+
+ThreadPoolTaskExecutor是一个spring的线程池技术，
+其实，它的实现方式完全是使用ThreadPoolExecutor进行实现（有点类似于装饰者模式。当然Spring提供的功能更加强大些，因为还有定时调度功能）。
+
+线程池
+ThreadPoolExecutor的重要参数
+
+    corePoolSize：核心线程数  核心线程会一直存活，即使没有任务需要执行
+
+        当线程数小于核心线程数时（还未满，就会一直增），即使有线程空闲，线程池也会优先创建新线程处理
+        设置allowCoreThreadTimeout=true（默认false）时，核心线程会超时关闭
+
+    queueCapacity：任务队列容量（阻塞队列）
+
+        当核心线程数达到最大时，新任务会放在队列中排队等待执行
+
+    maxPoolSize：最大线程数
+
+        当线程数>corePoolSize，且任务队列已满时。线程池会创建新线程来处理任务，直到线程数量达到maxPoolSize
+        当线程数已经=maxPoolSize，且任务队列已满时，线程池会拒绝处理任务而抛出异常
+
+    keepAliveTime：线程空闲时间
+
+        当线程空闲时间达到keepAliveTime时，线程会被销毁，直到线程数量=corePoolSize
+        如果allowCoreThreadTimeout=true，则会直到线程数量=0（这个特性需要注意）
+
+
+    allowCoreThreadTimeout：允许核心线程超时（如上，会影响keepAliveTime哦）
+
+    rejectedExecutionHandler：任务拒绝处理器（用户可以自定义拒绝后的处理方式）
+
+    两种情况会拒绝处理任务：
+    1、当线程数已经达到maxPoolSize，且任务队列已满时，会拒绝新任务
+    2、当线程池被调用shutdown()后，会等待线程池里的任务执行完毕，再shutdown。
+    如果在调用shutdown()和线程池真正shutdown之间提交任务，会拒绝新任务（并不是立马停止，而是执行完再停止）。
+    若拒绝后，此时，线程池会调用rejectedExecutionHandler来处理这个任务。
+    如果没有设置，默认值是AbortPolicy，会抛出异常
+
+
+
+    hreadPoolExecutor类有几个内部实现类来处理这类情况：
+    1： AbortPolicy 丢弃任务，抛运行时异常
+    2：CallerRunsPolicy 执行任务（这个策略重试添加当前的任务，他会自动重复调用 execute() 方法，直到成功） 如果执行器已关闭,则丢弃.
+    3：DiscardPolicy 对拒绝任务直接无声抛弃，没有异常信息
+    4：DiscardOldestPolicy 对拒绝任务不抛弃，而是抛弃队列里面等待最久的（队列头部的任务将被删除）一个线程，然后把拒绝任务加到队列（Queue是先进先出的任务调度算法，具体策略会咋下面有分析）（如果再次失败，则重复此过程）
+    5：实现RejectedExecutionHandler接口，可自定义处理器（可以自己实现然后set进去）
+
+
+二、ThreadPoolExecutor处理任务的顺序、原理
+
+一个任务通过 execute(Runnable) 方法被添加到线程池，任务就是一个 Runnable 类型的对象，任务的执行方法就是 Runnable 类型对象的 run() 方法。
+
+当一个任务通过 execute(Runnable) 方法欲添加到线程池时，线程池采用的策略如下（即添加任务的策略）：
+
+如果此时线程池中的数量小于 corePoolSize ，即使线程池中的线程都处于空闲状态，也要创建新的线程来处理被添加的任务。
+
+如果此时线程池中的数量等于 corePoolSize ，但是缓冲队列 workQueue 未满，那么任务被放入缓冲队列。
+
+如果此时线程池中的数量大于 corePoolSize ，缓冲队列 workQueue 满，并且线程池中的数量小于maximumPoolSize ，建新的线程来处理被添加的任务。
+
+如果此时线程池中的数量大于 corePoolSize ，缓冲队列 workQueue 满，并且线程池中的数量等于maximumPoolSize ，那么通过 handler 所指定的策略来处理此任务。
+
+另外 Executors 类里面还有几个方法：newFixedThreadPool(),newCachedThreadPool() 等几个方法，
+实际上也是间接调用了ThreadPoolExocutor ，不过是传的不同的构造参数。
+
+Executors.newCachedThreadPool(); //创建一个缓冲池，缓冲池容量大小为Integer.MAX_VALUE
+Executors.newSingleThreadExecutor(); //创建容量为1的缓冲池
+Executors.newFixedThreadPool(int); //创建固定容量大小的缓冲池
+
+
+
+
+
+
+corePoolSize：核心线程数。
+maximumPoolSize：最大线程数。表明线程中最多能够创建的线程数量。
+keepAliveTime：空闲的线程保留的时间。
+unit：空闲线程的保留时间单位。
+BlockingQueue workQueue：用于保存等待执行的任务的阻塞队列。可以选择以下几个阻塞队列。
+1、ArrayBlockingQueue：是一个基于数组结构的有界阻塞队列，此队列按 FIFO（先进先出）原则对元素进行排序。
+2、LinkedBlockingQueue：一个基于链表结构的阻塞队列，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool()使用了这个队列
+3、SynchronousQueue：一个不存储元素的阻塞队列。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool使用了这个队列。
+4、PriorityBlockingQueue：一个具有优先级的无限阻塞队列。
+threadFactory：用于设置创建线程的工厂，可以通过线程工厂给每个创建出来的线程做些更有意义的事情，比如设置daemon和优先级等等
+handler：饱和策略处理器。默认提供的4中策略上面已经有解释了
+
+
+
+强烈建议程序员使用较为方便的 Executors 工厂方法
+Executors.newCachedThreadPool()（无界线程池，可以进行自动线程回收）、
+Executors.newFixedThreadPool(int)（固定大小线程池）
+Executors.newSingleThreadExecutor()（单个后台线程）
+它们均为大多数使用场景预定义了设置。
+
+    如何设置线程池的参数：
+
+    系统默认值
+    corePoolSize=1
+    queueCapacity=Integer.MAX_VALUE
+    maxPoolSize=Integer.MAX_VALUE
+    keepAliveTime=60s
+    allowCoreThreadTimeout=false
+    rejectedExecutionHandler=AbortPolicy()
+
+
+
+    那我们如何来设置呢？需要根据几个值来决定
+
+    tasks ：每秒的任务数，假设为500~1000
+    taskcost：每个任务花费时间，假设为0.1s
+    responsetime：系统允许容忍的最大响应时间，假设为1s
+    做几个计算
+    corePoolSize = 每秒需要多少个线程处理？
+
+    threadcount = tasks/(1/taskcost) =tasks*taskcout = (500~1000)*0.1 = 50~100 个线程。corePoolSize设置应该大于50
+    根据8020原则，如果80%的每秒任务数小于800，那么corePoolSize设置为80即可
+    queueCapacity = (coreSizePool/taskcost)*responsetime
+    计算可得 queueCapacity = 80/1 = 80。意思是队列里的线程可以等待1s，超过了的需要新开线程来执行
+    切记不能设置为Integer.MAX_VALUE，这样队列会很大，线程数只会保持在corePoolSize大小，当任务陡增时，不能新开线程来执行，响应时间会随之陡增。
+    maxPoolSize = (max(tasks)- queueCapacity)/(1/taskcost)
+    计算可得 maxPoolSize = (1000-80)/10 = 92
+    （最大任务数-队列容量）/每个线程每秒处理能力 = 最大线程数
+
+
+
+
+rejectedExecutionHandler：根据具体情况来决定，任务不重要可丢弃，任务重要则要利用一些缓冲机制来处理
+
+keepAliveTime和allowCoreThreadTimeout采用默认通常能满足
+以上都是理想值，实际情况下要根据机器性能来决定。如果在未达到最大线程数的情况机器cpu load已经满了，则需要通过升级硬件（呵呵）和优化代码，降低taskcost来处理。
+
+JDK1.5 的线程池由 Executor 框架提供。 Executor 框架将处理请求任务的提交和它的执行解耦。
+可以制定执行策略。在线程池中执行线程可以重用已经存在的线程，而不是创建新的线程，
+可以在处理多请求时抵消线程创建、消亡产生的开销。
+如果线程池过大，会导致内存的高使用量，还可能耗尽资源。
+如果过小，会由于存在很多的处理器资源未工作，对吞吐量造成损失。
+
+如何合理配置线程池大小，一般需要根据任务的类型来配置线程池大小：
+　　1、如果是CPU密集型任务，就需要尽量压榨CPU，参考值可以设为 NCPU+1（比如是4核心 就配置为5）
+　　2、如果是IO密集型任务，参考值可以设置为2*NCPU
+　　当然，这只是一个参考值，具体的设置还需要根据实际情况进行调整，比如可以先将线程池大小设置为参考值，再观察任务运行情况和系统负载、资源利用率来进行适当调整。
+
+
+
+
+
+使用场景
+1、当你的任务是非必要的时候。比如记录操作日志、通知第三方服务非必要信息等，可以使用线程池处理非阻塞任务
+2、当你的任务非常耗时时候，可以采用线程池技术
+3、当请求并发很高时，可以采用线程池技术优化处理
+
+可以通过Executors静态工厂构建线程池，但一般不建议这样使用。
+
+提醒：能够用线程池的时候，不要自己的去new线程start，在高并发环境下，系统资源是宝贵的，需要节约资源才能提高可用性。
+
+
+
+向线程池提交任务
+
+https://blog.csdn.net/beststudent_/article/details/94222442
+
+简单的说 就是  创建线程池 然后 执行execute(RunableThread)   即可
+

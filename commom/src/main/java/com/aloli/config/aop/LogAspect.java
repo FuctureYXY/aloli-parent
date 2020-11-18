@@ -51,6 +51,11 @@ public class LogAspect {
         Action action = method.getAnnotation(Action.class);
         System.out.println("注解式拦截 "+action.name());
     }
+
+    /**
+     * 因为是依赖进去的  也就是  即使这个service 没有也会生效的
+     * @param joinPoint
+     */
     @Before("execution(* com.aloli.service.DemoMethodService.*(..))")
     public void before(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
