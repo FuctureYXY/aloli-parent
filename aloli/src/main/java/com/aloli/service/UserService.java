@@ -11,4 +11,5 @@ public interface UserService extends IService<User> {
 	  String   useSync();
 	  void   testshiwu(User user);
 	String   bbx();
+	void   testshiwu2(User user );
 }

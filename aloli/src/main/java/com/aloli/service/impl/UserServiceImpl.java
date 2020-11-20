@@ -50,16 +50,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	}
 
 	@Override
-	@Transactional
 	public  void   testshiwu(User user ){
 		User user2 = new User();
 		user2.setId("cc");
 		user2.setUsername("cc");
-	this.save(user2);
-		testshiwu2(user);
-	throw new RuntimeException("b");
+	//this.save(user2);
+		((UserService)AopContext.currentProxy()).testshiwu2(user);
+	//throw new RuntimeException("b");
 	}
 	@Transactional
+	@Override
 	public  void   testshiwu2(User user ){
 		User user2 = new User();
 		user2.setId("cc3");

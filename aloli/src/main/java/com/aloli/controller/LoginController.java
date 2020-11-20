@@ -117,5 +117,16 @@ public class LoginController {
 		//return "aa";
 	}
 
+	@GetMapping("/getshiwu")
+	public void  getshiwu( UserVo user){
+		User user1 = new User();
+		user1.setId("dd222");
+
+		//WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+		userService.testshiwu(user1);
+
+	}
+
+
 
 }
