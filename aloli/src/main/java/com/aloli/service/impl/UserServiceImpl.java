@@ -2,6 +2,7 @@ package com.aloli.service.impl;
 
 import com.aloli.service.DemoMethodService;
 import lombok.AllArgsConstructor;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -30,14 +31,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 	@Override
 	public  String   bbx(){
-		demoMethodService.addd("33");
-		//useSync();
+		//demoMethodService.addd("33");
+		((UserService)AopContext.currentProxy()).useSync();
+
+		System.out.println("bbxxx");
 		return "aa";
 	}
 
 	@Async("syncPoolTaskExecutor")
 	@Override
 	public  String   useSync(){
+		try{
+			Thread.sleep(3000);
+		}catch (Exception e){}
+
 		System.out.println("用来验证事务");
 		return "aa";
 	}

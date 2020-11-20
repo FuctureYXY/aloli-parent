@@ -21,7 +21,13 @@ public class SyncConfiguration {
      *  controller 调用   没加service  然后  service 加了事务  只处理 service 事务
      *  service.a() 调用 service.b()     只有 a()加了事务才生效   就算b加了事务也不生效
      *  service.a(){service.b}  b加了事务 a没加 这样也是没有生效的
-     *   因此 完美的使用方法是  调用到了改service 加上注解即可
+     *   因此 完美的使用方法是  调用到了改service 加上注解即可  真的是完美吗  不！
+     *
+     * 看下面这个博客
+     *   https://cloud.tencent.com/developer/article/1497700
+     *
+     *  发现  可以使用 AopContext.currentProxy() 强转来获取到代理对象
+     *  如果出错 采用   启动类上加上 @EnableAspectJAutoProxy(exposeProxy = true)    来  暴露当前代理对象到当前线程进行绑定
      *
      * @return
      */

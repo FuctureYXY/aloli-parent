@@ -112,7 +112,7 @@ public class LoginController {
 
 		//WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
 		userService.useSync();
-		//System.out.println("cc");
+		System.out.println("cc");
 
 		//return "aa";
 	}
