@@ -22,11 +22,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+
 		<!-- 	如果要整合Jsp开发 就不能用自带的   就需要单独配置一个外置的tomcat 所以就需要打war包   -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -91,7 +87,7 @@
 	<module>aloli-api</module>
 	<module>commom</module>
 	<module>aloli</module>
-
+	<module>gateway</module>
 	</modules>
 
 	</project>
