@@ -15,9 +15,13 @@ spring:
           lower-case-service-id: true
       routes:
         - id: nacos-gatway-aloli
+          #lb 代表内部的服务名  当然可以直接用https://www.baidu.com/
           uri: lb://aloli-security
-          #uri: lb://aloli
           predicates:
             - Path=/aloli-security/**
+        - id: nacos-gatway-aloli
+          uri: lb://aloli-business
+          predicates:
+          - Path=/aloli-business/**
 
 

@@ -42,7 +42,7 @@ public class LogAspect {
 
     //@After("annotationPoinCut()")
 
-
+/*
 
     @After("@annotation(com.aloli.annotation.aop.Action)")
     public void after(JoinPoint joinPoint){
@@ -52,10 +52,10 @@ public class LogAspect {
         System.out.println("注解式拦截 "+action.name());
     }
 
-    /**
+    *//**
      * 因为是依赖进去的  也就是  即使这个service 没有也会生效的
      * @param joinPoint
-     */
+     *//*
     @Before("execution(* com.aloli.service.DemoMethodService.*(..))")
     public void before(JoinPoint joinPoint){
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
@@ -91,6 +91,6 @@ public class LogAspect {
         System.out.println("异常通知开始,");
 
         System.out.println("异常通知结束,");
-    }
+    }*/
 }
 

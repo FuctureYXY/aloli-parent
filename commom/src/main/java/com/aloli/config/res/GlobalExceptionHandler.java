@@ -15,7 +15,7 @@ import javax.validation.ValidationException;
 import java.util.List;
 
 //全局异常处理器
-@RestControllerAdvice(basePackages = {"com.aloli.security.controller","com.aloli.config.res"})
+@RestControllerAdvice(basePackages = {"com.aloli","com.aloli.config.res"})
 public class GlobalExceptionHandler {
 
 

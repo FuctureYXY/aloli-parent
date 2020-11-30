@@ -8,10 +8,11 @@ public class DemoMethodService {
 
 
 
-    @Async("syncPoolTaskExecutor")
+    //@Async("syncPoolTaskExecutor")
     public void addd(String name ){
         System.out.println(name);
-       // throw  new RuntimeException("dd");
+        //Integer x = 1/0;
+       throw  new RuntimeException("dd");
     }
 
 }
