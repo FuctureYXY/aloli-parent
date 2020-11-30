@@ -18,10 +18,10 @@
 	<dependencies>
 		<!--  Starter for building web, including RESTful,
          applications using Spring MVC. Uses Tomcat as the default embedded container -->
-		<dependency>
+<!--		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+		</dependency>-->
 
 		<!-- 	如果要整合Jsp开发 就不能用自带的   就需要单独配置一个外置的tomcat 所以就需要打war包   -->
 		<dependency>
@@ -84,9 +84,9 @@
 
 
 	<modules>
-	<module>aloli-api</module>
+	<module>aloli-security-api</module>
 	<module>commom</module>
-	<module>aloli</module>
+	<module>aloli-security</module>
 	<module>gateway</module>
 	</modules>
 

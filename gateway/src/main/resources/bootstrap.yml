@@ -15,9 +15,9 @@ spring:
           lower-case-service-id: true
       routes:
         - id: nacos-gatway-aloli
-          uri: lb://aloli
+          uri: lb://aloli-security
           #uri: lb://aloli
           predicates:
-            - Path=/aloli/**
+            - Path=/aloli-security/**
 
 

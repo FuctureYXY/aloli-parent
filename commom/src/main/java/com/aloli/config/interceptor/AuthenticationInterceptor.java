@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aloli.annotation.login.PassToken;
 import com.aloli.annotation.login.UserLoginToken;
-import com.aloli.entity.User;
-import com.aloli.service.UserService;
+import com.aloli.security.entity.User;
+import com.aloli.security.service.UserService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
