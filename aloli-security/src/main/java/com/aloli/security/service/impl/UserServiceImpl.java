@@ -6,7 +6,7 @@ import org.springframework.aop.framework.AopContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.aloli.security.entity.User;
+import com.aloli.security.api.User;
 import com.aloli.security.mapper.UserMapper;
 import com.aloli.security.service.UserService;
 import com.auth0.jwt.JWT;

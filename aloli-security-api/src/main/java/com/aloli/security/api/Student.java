@@ -1,4 +1,4 @@
-package com.aloli.security.entity;
+package com.aloli.security.api;
 
 public class Student {
 

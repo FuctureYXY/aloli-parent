@@ -1,4 +1,4 @@
-package com.aloli.security.entity;
+package com.aloli.security.api;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;

@@ -19,7 +19,7 @@
 #    driver-class-name: com.mysql.jdbc.Driver
 #mybatis-plus:
 #  #entity实体扫描 这样 在 mapper.xml中就可以不用写全路径名了
-#  type-aliases-package: com.aloli.security.entity
+#  type-aliases-package: com.aloli.security.api
 #  #mapper.xml绑定到mapper
 #  mapper-locations: classpath:mappers/*.xml
 #  configuration:

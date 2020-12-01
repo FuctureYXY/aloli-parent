@@ -1,6 +1,6 @@
 package com.aloli.security.service;
 
-import com.aloli.security.entity.User;
+import com.aloli.security.api.User;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 

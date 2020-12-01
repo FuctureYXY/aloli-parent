@@ -88,6 +88,7 @@
 	<module>commom</module>
 	<module>aloli-security</module>
 	<module>gateway</module>
+	<module>aloli-business</module>
 	</modules>
 
 	</project>

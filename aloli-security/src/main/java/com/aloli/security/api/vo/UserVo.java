@@ -1,4 +1,4 @@
-package com.aloli.security.entity.vo;
+package com.aloli.security.api.vo;
 
 import lombok.Data;
 

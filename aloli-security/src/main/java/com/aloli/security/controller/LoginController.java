@@ -4,12 +4,13 @@ package com.aloli.security.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.aloli.annotation.login.UserLoginToken;
 import com.aloli.config.res.BussinessException;
-import com.aloli.security.entity.User;
-import com.aloli.security.entity.vo.UserVo;
+import com.aloli.security.api.User;
+import com.aloli.security.api.vo.UserVo;
 import com.aloli.security.service.DemoMethodService;
 import com.aloli.security.service.UserService;
 import com.aloli.util.ResultCode;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -54,8 +55,9 @@ public class LoginController {
 	}
 	@GetMapping("/getList")
 	public List getList(){
-
-		return new ArrayList();
+		List list = Lists.newArrayList();
+		list.add("33");
+		return list;
 	}
 
 	@GetMapping("/getException")

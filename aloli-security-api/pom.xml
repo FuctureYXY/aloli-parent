@@ -11,6 +11,13 @@
 	  <artifactId>aloli-security-api</artifactId>
 	  <version>${project.parent.version}</version>
 	  <name>aloli-security-api</name>
-
+	<!--远程调用需要使用到的包   只需要api 里面加上即可 其他的不需要加上-->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+			<version>2.1.2.RELEASE</version>
+		</dependency>
+	</dependencies>
 
 </project>
