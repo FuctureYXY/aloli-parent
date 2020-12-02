@@ -23,5 +23,37 @@ spring:
           uri: lb://aloli-business
           predicates:
           - Path=/aloli-business/**
+#        - id: oauth2-auth-server
+#          uri: lb://oauth2-auth-server
+#          predicates:
+#          - Path=/oauth2-auth-server/**
+#        - id: oauth2-resource-server
+#          uri: lb://oauth2-resource-server
+#          predicates:
+#            - Path=/oauth2-resource-server/**
+        - id: auth-login-process
+          uri: lb://oauth2-resource-server
+          predicates:
+            - Path=/login
+          filters:
+            - PreserveHostHeader
+        - id: auth-login-token
+          uri: lb://oauth2-resource-server
+          predicates:
+            - Path=/oauth/token
+          filters:
+            - PreserveHostHeader
+        - id: auth-login-authorize
+          uri: lb://oauth2-resource-server
+          predicates:
+            - Path=/oauth/authorize
+          filters:
+            - PreserveHostHeader
+        - id: auth-check-process
+          uri: lb://oauth2-resource-server
+          predicates:
+            - Path=/oauth/check_token
+          filters:
+            - PreserveHostHeader
 
 

@@ -1,17 +1,16 @@
-package com.aloli.gateway;
+package com.aloli.oauth2.resource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GatewayApplication {
+public class Oauth2ResourceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
+        SpringApplication.run(Oauth2ResourceApplication.class, args);
     }
 
 }
