@@ -29,6 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         SimpleGrantedAuthority simpleGrantedAuthority2 = new SimpleGrantedAuthority("web");
         list.add(simpleGrantedAuthority);
         list.add(simpleGrantedAuthority2);*/
-        return new User("aa", new BCryptPasswordEncoder().encode("bb"), list);
+        //返回用户名   密码  和权限进行security 登录校验
+        return new User("aloli", new BCryptPasswordEncoder().encode("aloli"), list);
     }
 }

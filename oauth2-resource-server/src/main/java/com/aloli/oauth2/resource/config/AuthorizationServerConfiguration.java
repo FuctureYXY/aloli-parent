@@ -35,7 +35,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
-        //使用redis 存储token
+        //使用redis 存储token   内部实现  存入redis
         return new RedisTokenStore(redisConnectionFactory);
         // return new JdbcTokenStore(dataSource);
     }
@@ -63,7 +63,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         defaultTokenServices.setAccessTokenValiditySeconds(60 * 60);// 一小时
         //refresh_token 的有效期,如果数据库中配置了的话,会覆盖该值
         defaultTokenServices.setRefreshTokenValiditySeconds(60 * 60 * 24 * 7);//7天
-
         //是否支持返回refresh_token,false 将不会返回refresh_token
         defaultTokenServices.setSupportRefreshToken(true);
         //对应上面的token存储配置
