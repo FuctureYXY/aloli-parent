@@ -1,5 +1,6 @@
 package com.aloli.business.controller;
 
+import com.aloli.business.netty.NettyClient;
 import com.aloli.security.api.RemoteSecurityFeign;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -15,7 +16,7 @@ import java.util.List;
 public class NacosConfigController {
 
     private RemoteSecurityFeign remoteSecurityFeign;
-
+    private NettyClient nettyClient;
 
 
     @RequestMapping("/get")
@@ -28,5 +29,8 @@ public class NacosConfigController {
         throw new RuntimeException("vv");
     }
 
-
+    @RequestMapping("/get3")
+    public void get3() {
+       nettyClient.sendMsg("bbaa");
+    }
 }
