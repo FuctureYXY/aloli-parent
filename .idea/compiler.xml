@@ -7,15 +7,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="aloli-api" />
-        <module name="aloli" />
+        <module name="gateway" />
+        <module name="oauth2-auth-server" />
+        <module name="aloli-business" />
+        <module name="oauth2-resource-server" />
+        <module name="aloli-security" />
+        <module name="aloli-security-api" />
+        <module name="commom" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aloli" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="aloli" options="-parameters" />
-      <module name="aloli-api" options="-parameters" />
+      <module name="aloli-business" options="-parameters" />
+      <module name="aloli-security" options="-parameters" />
+      <module name="aloli-security-api" options="-parameters" />
+      <module name="commom" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="oauth2-auth-server" options="-parameters" />
+      <module name="oauth2-resource-server" options="-parameters" />
     </option>
   </component>
 </project>
