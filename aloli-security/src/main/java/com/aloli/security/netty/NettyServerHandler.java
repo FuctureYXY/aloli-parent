@@ -7,12 +7,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-/**
- * @author 阿甘
- * @see https://study.163.com/provider/1016671292/course.htm?share=1&shareId=1016481220
- * @version 1.0
- * 注：如有任何疑问欢迎阿甘老师微信：agan-java 随时咨询老师。
- */
+
 @ChannelHandler.Sharable //标注一个channel handler可以被多个channel安全地共享
 public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
 
