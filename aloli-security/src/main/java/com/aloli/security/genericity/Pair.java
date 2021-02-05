@@ -22,4 +22,9 @@ public class Pair<T> {
         this.last = last;
     }
 
+    public    static <T>  Integer  getaa(){
+            return  33;
     }
+
+
+}

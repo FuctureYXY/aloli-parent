@@ -9,11 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="gateway" />
         <module name="oauth2-auth-server" />
-        <module name="aloli-business" />
+        <module name="commom" />
         <module name="oauth2-resource-server" />
         <module name="aloli-security" />
         <module name="aloli-security-api" />
-        <module name="commom" />
+        <module name="aloli-business" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
