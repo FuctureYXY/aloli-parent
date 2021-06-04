@@ -1,7 +1,9 @@
 package com.aloli.security.arithmetic;
 
+/**
+ * 搜索算法
+ */
 public class SearchTest {
-
 
 
     //二分查找
