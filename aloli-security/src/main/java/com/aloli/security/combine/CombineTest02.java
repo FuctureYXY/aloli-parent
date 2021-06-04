@@ -3,6 +3,9 @@ package com.aloli.security.combine;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import javax.validation.constraints.Null;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -102,5 +105,31 @@ public class CombineTest02 {
     }
 
 
+    @Test
+    public void aaaa() throws Exception {
+        long st = System.currentTimeMillis();
+        List< CompletableFuture<Integer>> A = new ArrayList();
 
+
+        for(int i=0;i<10;i++){
+            CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                }
+                log.debug("{}-----sleep",Thread.currentThread().getName());
+                return 3;
+            },Common.executor);
+            A.add( completableFuture);
+        }
+
+        for( CompletableFuture<Integer> c:A){
+            System.out.println(c.get());
+        }
+
+        System.out.println(A);
+        String sout = String.format("%s done in %s mesc","3",(System.currentTimeMillis() - st));
+
+    }
 }

@@ -12,7 +12,6 @@ class AloliBusinessApplicationTests {
     @Test
     void contextLoads() {
         this.sender.send();
-
     }
 
 }
