@@ -6,7 +6,11 @@ import lombok.Data;
 @Data
 public class TreeNode {
 
-    private int aa;
+    private Integer data;
 
+    private TreeNode left;
 
+    private TreeNode right;
+
+    private int high;
 }
