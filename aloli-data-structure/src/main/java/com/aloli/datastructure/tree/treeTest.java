@@ -1,4 +1,4 @@
-package com.aloli.security.tree;
+package com.aloli.datastructure.tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;

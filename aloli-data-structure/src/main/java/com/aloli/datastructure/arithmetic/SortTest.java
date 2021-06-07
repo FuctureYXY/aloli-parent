@@ -1,4 +1,4 @@
-package com.aloli.security.arithmetic;
+package com.aloli.datastructure.arithmetic;
 
 import java.util.Arrays;
 

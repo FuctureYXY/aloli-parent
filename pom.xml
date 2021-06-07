@@ -91,6 +91,7 @@
 	<module>oauth2-auth-server</module>
 	<module>oauth2-resource-server</module>
 	<module>aloli-business</module>
+	<module>aloli-data-structure</module>
 	</modules>
 
 	</project>
